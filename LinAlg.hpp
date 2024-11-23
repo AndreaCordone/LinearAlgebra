@@ -3,7 +3,28 @@
 #include"matrix.hpp"
 
 
-// Matrix Multiplication
-Matrix mat_multiply ( Matrix &, Matrix &);  
-Matrix StrassenAlgorithm ( Matrix , Matrix) ;  
+// MATRIX BASIC OPERATION 
+
+    // MATRIX MULTIPLICATION 
+    
+    // Standard out-of-the-book matrix multiplication
+    // Simple implementation but slower when matrix dimension increase. 
+    Matrix mat_multiply ( Matrix &, Matrix &);  
+
+
+    //Strassen Algorithm: recursive algorithm faster for matrix with bigger dimension
+    // Refer to: https://www.cs.mcgill.ca/~pnguyen/251F09/matrix-mult.pdf 
+    Matrix StrassenAlgorithm ( Matrix , Matrix) ;  
+
+
+
+// MATRIX DETERMINANT
+
+
+// MATRIX FACTORIZATION
+
+
+// EIGENVALUE
+
+
 #endif

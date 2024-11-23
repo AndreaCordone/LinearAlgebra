@@ -10,19 +10,26 @@ class Matrix {
 
 public:
 
-    // CONSTRUCTOR 
+// CONSTRUCTOR METHODS
 
     // Construction of a matrix of size rowxcol with a single value
     Matrix (size_t,size_t, double);  
 
+    // Construct a matrix filled with random value
+    // UNDER CONSTRUCTION
 
-    // FRIENDS
+// COPY CONSTRUCTOR 
+
+    // UNDER DEFINITION
+
+
+// FRIENDS
 
     // Output stream overloading 
     friend std::ostream & operator << (std::ostream &, const Matrix &);  
 
 
-    //ACCESS
+//ACCESS
 
     // Access element
     double & operator () (size_t , size_t); 
@@ -45,19 +52,23 @@ public:
     // Get sub-matrix
     Matrix  operator () (size_t, size_t, size_t, size_t); 
 
-    // MANIPULATION
+
+// MANIPULATION
 
     // Insert row
+    // UNDER CONSTRUCTION
 
     // Insert col
+    // UNDER CONSTRUCTION
 
     // Insert sub-matrix. 
-    // Matrix to be inserted in A
+    // Matrix B to be inserted in matrix A
     // Position where to insert in A given as (start row, end row, start col, end col) 
     void assign(Matrix, size_t, size_t, size_t, size_t);  
 
-    
-    // MATRIX OPERATION
+
+
+// MATRIX OPERATION
 
     // Matrix Sum
     Matrix operator + (Matrix);  
@@ -68,13 +79,7 @@ public:
     // Matrix Change Sign
     void change_sign(); 
     
-    // Matrix Multiplication
-    //Matrix operator * (Matrix)
     
-    // Matrix Inverse
-
-    
-
 
 private:
 
