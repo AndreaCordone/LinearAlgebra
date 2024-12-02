@@ -4,7 +4,7 @@
 #include<iostream>
 #include<vector>
 #include<algorithm> 
-
+#include<random>
 
 class Matrix {
 
@@ -16,7 +16,8 @@ public:
     Matrix (size_t,size_t, double);  
 
     // Construct a matrix filled with random value
-    // UNDER CONSTRUCTION
+    Matrix (size_t,size_t, std::string); 
+
 
 // COPY CONSTRUCTOR 
 
@@ -65,6 +66,12 @@ public:
     // Matrix B to be inserted in matrix A
     // Position where to insert in A given as (start row, end row, start col, end col) 
     void assign(Matrix, size_t, size_t, size_t, size_t);  
+
+    // Append a row at the end of the matrix
+    void append_row(std::vector<double>); 
+
+   // Append a column at the end of the matrix
+   void append_col(std::vector<double>);  
 
 
 

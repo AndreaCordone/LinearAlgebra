@@ -8,20 +8,20 @@
 // A = left most matrix
 // B = right most matrix
 
-Matrix mat_multiply ( Matrix & A, Matrix & B )
+Matrix MatrixMultiplication (Matrix & A, Matrix & B)
 
 {
     if (A.col_size() != B.row_size()) throw std::invalid_argument("First matrix col number must match Second matrix row number"); 
     
-    size_t N = A.row_size(); 
+    size_t N = A.row_size();
     size_t K = A.col_size();   // common A and B dimension A.get_col == B.get_row(); 
     size_t M = B.col_size();  
 
-    Matrix C(N,K,0);  // Output matrix C = A*B
+    Matrix C(N,M,0);  // Output matrix C = A*B
        
         for (size_t i=0; i <N; ++i)
             for (size_t j=0; j<M; ++j)
-                for (size_t k=0; k<M; ++k)
+                for (size_t k=0; k<K; ++k)
                     C(i,j) += A(i,k)*B(k,j);
     return C; 
 }

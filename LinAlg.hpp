@@ -9,7 +9,7 @@
     
     // Standard out-of-the-book matrix multiplication
     // Simple implementation but slower when matrix dimension increase. 
-    Matrix mat_multiply ( Matrix &, Matrix &);  
+    Matrix MatrixMultiplication ( Matrix &, Matrix &);  
 
 
     //Strassen Algorithm: recursive algorithm faster for matrix with bigger dimension
