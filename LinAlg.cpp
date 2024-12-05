@@ -11,7 +11,7 @@
 Matrix MatrixMultiplication (Matrix & A, Matrix & B)
 
 {
-    if (A.col_size() != B.row_size()) throw std::invalid_argument("First matrix col number must match Second matrix row number"); 
+    if (A.col_size() != B.row_size()) throw std::invalid_argument("matrix A col number must match B matrix row number"); 
     
     size_t N = A.row_size();
     size_t K = A.col_size();   // common A and B dimension A.get_col == B.get_row(); 
@@ -31,21 +31,32 @@ Matrix MatrixMultiplication (Matrix & A, Matrix & B)
 // Up to know only working for:
 // *  square matrices 
 // *  matrix dimension 2^(N)
-// * need to evaluate rectangular matrxi
-// * include the check for matrix with different dimension
-//  
-Matrix StrassenAlgorithm (Matrix A, Matrix B)
+// for all the other case (rectangular matrix, matrix dimension not power of 2) consider to use the padding 
+// padding can be achieved through append_row / append_col by appending zeros to get a square matrix with dimension power of 2 
+Matrix StrassenAlgorithm (Matrix A, Matrix B, int stop)
 {
-
+    
     size_t N = A.row_size(); 
-    size_t K = A.col_size();   // common A and B dimension A.col_size() == B.row_size(); 
+    size_t K = A.col_size();
+    size_t L = B.row_size();    // common A and B dimension A.col_size() == B.row_size(); 
     size_t M = B.col_size();  
     
+    // check data consistency 
+    if (N != K || L!=M )    throw std::invalid_argument ("input matrix should be square, for rectangular matrix consider padding"); 
+    if (K != L)             throw std::invalid_argument ("matrix A col number must match B matrix row number");     
+    if ((N & (N-1)) != 0 )  throw std::invalid_argument ("matrix dimension must be a power of 2"); 
+   
+
     Matrix C(N,M,0); 
 
-    if ((A.size()==1) & (B.size()==1))
+
+    if ((A.size()==stop) && (B.size()==stop))
     {
-        C(0,0) = A(0,0)*B(0,0);
+        
+
+        if (stop != A.size() ) throw std::invalid_argument ("the stopping criteria do not match matrix size"); 
+        C = MatrixMultiplication(A,B);     
+        
         return C; 
     }
     
@@ -84,13 +95,13 @@ Matrix StrassenAlgorithm (Matrix A, Matrix B)
         B21 = B(K/2,K-1,0,M/2-1);
         B22 = B(K/2,K-1,M/2,M-1);
 
-        P1 = StrassenAlgorithm(A11,B12-B22); 
-        P2 = StrassenAlgorithm(A11+A12,B22); 
-        P3 = StrassenAlgorithm(A21+A22,B11); 
-        P4 = StrassenAlgorithm(A22,B21-B11);
-        P5 = StrassenAlgorithm(A11+A22,B11+B22); 
-        P6 = StrassenAlgorithm(A12-A22,B21+B22);
-        P7 = StrassenAlgorithm(A11-A21,B11+B12); 
+        P1 = StrassenAlgorithm(A11,B12-B22,stop); 
+        P2 = StrassenAlgorithm(A11+A12,B22,stop); 
+        P3 = StrassenAlgorithm(A21+A22,B11,stop); 
+        P4 = StrassenAlgorithm(A22,B21-B11,stop);
+        P5 = StrassenAlgorithm(A11+A22,B11+B22,stop); 
+        P6 = StrassenAlgorithm(A12-A22,B21+B22,stop);
+        P7 = StrassenAlgorithm(A11-A21,B11+B12,stop); 
 
         C11 = P5+P4-P2+P6; 
         C12 = P1+P2; 

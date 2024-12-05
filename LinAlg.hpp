@@ -14,7 +14,7 @@
 
     //Strassen Algorithm: recursive algorithm faster for matrix with bigger dimension
     // Refer to: https://www.cs.mcgill.ca/~pnguyen/251F09/matrix-mult.pdf 
-    Matrix StrassenAlgorithm ( Matrix , Matrix) ;  
+    Matrix StrassenAlgorithm ( Matrix , Matrix, int) ;  
 
 
 

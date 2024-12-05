@@ -16,7 +16,7 @@ public:
     Matrix (size_t,size_t, double);  
 
     // Construct a matrix filled with random value
-    Matrix (size_t,size_t, std::string); 
+    Matrix (size_t,size_t,int,int, std::string); 
 
 
 // COPY CONSTRUCTOR 
@@ -70,8 +70,8 @@ public:
     // Append a row at the end of the matrix
     void append_row(std::vector<double>); 
 
-   // Append a column at the end of the matrix
-   void append_col(std::vector<double>);  
+    // Append a column at the end of the matrix
+    void append_col(std::vector<double>);  
 
 
 

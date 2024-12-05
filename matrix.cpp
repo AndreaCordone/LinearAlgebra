@@ -5,15 +5,13 @@ Matrix::Matrix(size_t row_, size_t col_, double val): row(row_), col(col_), data
 
 
 // Construction of a matrix filled with random number
-
-// trovare un modo piu elegante di dare una string per specificare rand.
-Matrix::Matrix(size_t row_, size_t col_, std::string rand): row(row_), col(col_), data(col_*row_)
+Matrix::Matrix(size_t row_, size_t col_, int max_val, int min_val, std::string rand): row(row_), col(col_), data(col_*row_)
 {
 
     std::random_device rd; 
     std::mt19937 gen(rd()); 
 
-    std::uniform_real_distribution<> val (0,100); 
+    std::uniform_real_distribution<> val (min_val,max_val); 
 
     for (size_t i = 0; i<this->row*this->col; ++i) {this->data.at(i) = val(gen);}
 
