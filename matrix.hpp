@@ -21,8 +21,8 @@ public:
 
 // COPY CONSTRUCTOR 
 
-    // UNDER DEFINITION
 
+// DESTRUCTOR
 
 // FRIENDS
 
@@ -54,13 +54,25 @@ public:
     Matrix  operator () (size_t, size_t, size_t, size_t); 
 
 
+/*
+class CloumnIterator {
+
+public:
+
+    ColumnIterator () : m_ptr(nullptr) {}
+    ColumnIterator (double * ptr) : m_ptr(ptr)  
+
+    double & operator * () const {return *m_ptr; }
+    double * operator -> () const {return m_ptr; }
+
+
+} 
+ 
+*/   
+
 // MANIPULATION
 
-    // Insert row
-    // UNDER CONSTRUCTION
 
-    // Insert col
-    // UNDER CONSTRUCTION
 
     // Insert sub-matrix. 
     // Matrix B to be inserted in matrix A
@@ -73,31 +85,53 @@ public:
     // Append a column at the end of the matrix
     void append_col(std::vector<double>);  
 
+    // Row Operation (multiply and sum a scalar)
+    Matrix Row (int, double, double); 
 
+    // Col Operation (multiply and sum a scalar)  // sostituiscilo con un metodo ColModify
+
+    Matrix Col (int, double,double); 
+
+ 
 
 // MATRIX OPERATION
 
-    // Matrix Sum
+    // Matrix Sum // Valuatre se inserirli nella liberari LinALg
     Matrix operator + (Matrix);  
     
-    // Matrix Subtraction
+    // Matrix Subtraction // valutare se inserirli nella libreria Lin alg
     Matrix operator - (Matrix); 
+
 
     // Matrix Change Sign
     void change_sign(); 
     
-    
+
+
+// Iterator -- Still in evluation 
+void ColIterAdvance();
+std::vector<double>::iterator & ColIteratorBegin(int); 
+std::vector<double>::iterator & ColIteratorEnd(int); 
+
 
 private:
 
-    //Row number
+    //Row number // Valutare se chiamare mRow (come da buona norma)
     size_t row;  
 
-    //Column number
+    //Column number // valitare se chiamare mCol
     size_t col; 
 
-    //Matrix
-    std::vector<double> data; 
+    //Matrix        // mData
+    std::vector<double> data;
+
+    // Col Iterator -- still in progress.
+    
+    std::vector<double>::iterator ColIterBegin; 
+    std::vector<double>::iterator ColIterEnd; 
+
+    
+
 
 };
 

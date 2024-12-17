@@ -8,7 +8,9 @@
 // A = left most matrix
 // B = right most matrix
 
-Matrix MatrixMultiplication (Matrix & A, Matrix & B)
+
+
+Matrix MatrixMultiplication::SMM (Matrix & A, Matrix & B)
 
 {
     if (A.col_size() != B.row_size()) throw std::invalid_argument("matrix A col number must match B matrix row number"); 
@@ -33,7 +35,7 @@ Matrix MatrixMultiplication (Matrix & A, Matrix & B)
 // *  matrix dimension 2^(N)
 // for all the other case (rectangular matrix, matrix dimension not power of 2) consider to use the padding 
 // padding can be achieved through append_row / append_col by appending zeros to get a square matrix with dimension power of 2 
-Matrix StrassenAlgorithm (Matrix A, Matrix B, int stop)
+Matrix MatrixMultiplication::SAM (Matrix A, Matrix B, int stop )
 {
     
     size_t N = A.row_size(); 
@@ -55,7 +57,7 @@ Matrix StrassenAlgorithm (Matrix A, Matrix B, int stop)
         
 
         if (stop != A.size() ) throw std::invalid_argument ("the stopping criteria do not match matrix size"); 
-        C = MatrixMultiplication(A,B);     
+        C = SMM(A,B);     
         
         return C; 
     }
@@ -95,13 +97,13 @@ Matrix StrassenAlgorithm (Matrix A, Matrix B, int stop)
         B21 = B(K/2,K-1,0,M/2-1);
         B22 = B(K/2,K-1,M/2,M-1);
 
-        P1 = StrassenAlgorithm(A11,B12-B22,stop); 
-        P2 = StrassenAlgorithm(A11+A12,B22,stop); 
-        P3 = StrassenAlgorithm(A21+A22,B11,stop); 
-        P4 = StrassenAlgorithm(A22,B21-B11,stop);
-        P5 = StrassenAlgorithm(A11+A22,B11+B22,stop); 
-        P6 = StrassenAlgorithm(A12-A22,B21+B22,stop);
-        P7 = StrassenAlgorithm(A11-A21,B11+B12,stop); 
+        P1 = SAM(A11,B12-B22,stop); 
+        P2 = SAM(A11+A12,B22,stop); 
+        P3 = SAM(A21+A22,B11,stop); 
+        P4 = SAM(A22,B21-B11,stop);
+        P5 = SAM(A11+A22,B11+B22,stop); 
+        P6 = SAM(A12-A22,B21+B22,stop);
+        P7 = SAM(A11-A21,B11+B12,stop); 
 
         C11 = P5+P4-P2+P6; 
         C12 = P1+P2; 
@@ -115,4 +117,9 @@ Matrix StrassenAlgorithm (Matrix A, Matrix B, int stop)
 
         return  C; 
     }
+
+
+//MatrixMultipliaction::SCM(Matrix A, double)
+
 }
+

@@ -176,7 +176,7 @@ void Matrix::append_col (std::vector<double> Col)
 {
 
     // check input data consistency 
-    if (Col.size() != this->row) throw std::invalid_argument("column to append does not match matrix row dimension"); 
+    if (Col.size() != this->row) throw std::invalid_argument("Matrix::append_col::column to append does not match matrix row dimension"); 
     
     // Iterator of the matrix data (should I write a specific iterator for may matrix class)
     std::vector<double>::iterator insert_pos = data.begin(); 
@@ -198,4 +198,74 @@ void Matrix::append_col (std::vector<double> Col)
     // update matrix dimension
     this->col+=1; 
 
-}    
+}  
+
+
+
+
+
+
+ // Insert the dimsnion check 
+Matrix  Matrix::Row (int i, double prod, double sum) 
+{
+
+Matrix res = *this; 
+
+for (size_t j = 0; j < this->col; ++j) res.data[i*this->col + j] =  prod * this->data[i*this->col + j] + sum;
+
+
+return res;   
+
+
+}
+
+
+//insert dimension check
+Matrix  Matrix::Col (int j, double prod, double sum) 
+{
+
+Matrix res = *this; 
+
+for (size_t i = 0; i < this->row; ++i) res.data[i*this->col +j] =  prod * this->data[i*this->col + j] + sum;  
+
+return res; 
+
+}
+
+
+
+
+
+
+// Tentativo di implementare uno pseudo iterator per colonne. Probabilmente è meglio scrivere un iteratore da zero.
+
+
+
+
+void Matrix::ColIterAdvance()
+{
+
+std::advance(this->ColIterBegin, this->col); 
+
+
+}
+
+
+std::vector<double>::iterator & Matrix::ColIteratorBegin(int Column)
+{
+
+    this->ColIterBegin = data.begin(); 
+    std::advance(this->ColIterBegin, Column); 
+    return this->ColIterBegin; 
+
+}
+
+ 
+std::vector<double>::iterator & Matrix::ColIteratorEnd(int Column)
+{
+
+    this->ColIterEnd = this->ColIterBegin; 
+    std::advance(this->ColIterEnd, this->col*(this->row-1));
+    return this->ColIterEnd; 
+
+} 
