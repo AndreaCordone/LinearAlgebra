@@ -3,45 +3,44 @@
 
 
 
-// Matrix Multiplication 
+// Standard Matrix Multiplication (SMM)  
 // C [NxP] = A*B [NxM * MxP]
 // A = left most matrix
 // B = right most matrix
 
-
-
-Matrix MatrixMultiplication::SMM (Matrix & A, Matrix & B)
+Matrix MatrixMultiplication::SMM (const Matrix & A, const Matrix & B)
 
 {
     if (A.col_size() != B.row_size()) throw std::invalid_argument("matrix A col number must match B matrix row number"); 
     
-    size_t N = A.row_size();
-    size_t K = A.col_size();   // common A and B dimension A.get_col == B.get_row(); 
-    size_t M = B.col_size();  
+    int N = A.row_size();
+    int K = A.col_size();   // common A and B dimension A.get_col == B.get_row(); 
+    int M = B.col_size();  
 
     Matrix C(N,M,0);  // Output matrix C = A*B
        
-        for (size_t i=0; i <N; ++i)
-            for (size_t j=0; j<M; ++j)
-                for (size_t k=0; k<K; ++k)
+        for (int i=0; i <N; ++i)
+            for (int j=0; j<M; ++j)
+                for (int k=0; k<K; ++k)
                     C(i,j) += A(i,k)*B(k,j);
     return C; 
 }
 
 
 
+// Strassen Algorithm Mutltiplication (SAM)
 // Up to know only working for:
 // *  square matrices 
 // *  matrix dimension 2^(N)
 // for all the other case (rectangular matrix, matrix dimension not power of 2) consider to use the padding 
 // padding can be achieved through append_row / append_col by appending zeros to get a square matrix with dimension power of 2 
-Matrix MatrixMultiplication::SAM (Matrix A, Matrix B, int stop )
+Matrix MatrixMultiplication::SAM (const Matrix & A, const Matrix & B, int stop )
 {
     
-    size_t N = A.row_size(); 
-    size_t K = A.col_size();
-    size_t L = B.row_size();    // common A and B dimension A.col_size() == B.row_size(); 
-    size_t M = B.col_size();  
+    int N = A.row_size(); 
+    int K = A.col_size();
+    int L = B.row_size();    // common A and B dimension A.col_size() == B.row_size(); 
+    int M = B.col_size();  
     
     // check data consistency 
     if (N != K || L!=M )    throw std::invalid_argument ("input matrix should be square, for rectangular matrix consider padding"); 
@@ -69,13 +68,13 @@ Matrix MatrixMultiplication::SAM (Matrix A, Matrix B, int stop )
         Matrix C21(N/2,M/2,0);
         Matrix C22(N/2,M/2,0);  
 
-        Matrix P1(N,K,0); 
-        Matrix P2(N,K,0);
-        Matrix P3(N,K,0);
-        Matrix P4(N,K,0);
-        Matrix P5(N,K,0);
-        Matrix P6(N,K,0); 
-        Matrix P7(N,K,0); 
+        Matrix P1(N/2,K/2,0); 
+        Matrix P2(N/2,K/2,0);
+        Matrix P3(N/2,K/2,0);
+        Matrix P4(N/2,K/2,0);
+        Matrix P5(N/2,K/2,0);
+        Matrix P6(N/2,K/2,0); 
+        Matrix P7(N/2,K/2,0); 
     
         Matrix A11(N/2,K/2,0);  
         Matrix A12(N/2,K/2,0); 
@@ -117,9 +116,22 @@ Matrix MatrixMultiplication::SAM (Matrix A, Matrix B, int stop )
 
         return  C; 
     }
+}
+// Scalar Multiplication 
+
+Matrix MatrixMultiplication::SM (Matrix  A, double B)
+{
+
+int M = A.row_size(); 
+int N = A.col_size(); 
+
+// Matrix to store result
+Matrix C(M,N,0);
+
+std::transform ( A.get_data().begin(), A.get_data().end(), C.get_data().begin(), [B] (double val) { return val*B; } );   
 
 
-//MatrixMultipliaction::SCM(Matrix A, double)
+
+return C; 
 
 }
-

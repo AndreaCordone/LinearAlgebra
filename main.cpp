@@ -12,26 +12,31 @@
 int main () {
 
 
-Matrix a (4,5,1); 
+Matrix a (4,4,1); 
+double c  = -1.5; 
 
+
+Matrix C (4,4,0); 
 
 // uncomment to set the number of decimal places to format the ouput
 std::cout<<std::fixed; 
 std::cout<<std::setprecision(5); 
 
 
-Matrix c (4,5,0); 
-Matrix d (3,2,1.1); 
- 
-//c = a.RowByScalar(0,3) + a.ColByScalar(4,6); 
- 
-//c.assign(d,1,3,2,3); 
+Matrix D (4,4,0); 
 
+D = MatrixMultiplication::SM(a,c); 
+ 
+C = D.Row(0,3,1) + D.Col(3,6,1); 
+ 
+C.assign(D,0,3,0,3); 
 
-//std::cout<<c<<std::endl; 
 std::cout<<a<<std::endl; 
-std::cout<<a.Row(2,1,2)<<std::endl; 
-std::cout<<a.Col(3,5,5)<<std::endl; 
+std::cout<<C<<std::endl; 
+std::cout<<D<<std::endl; 
+
+
+
 
 
 

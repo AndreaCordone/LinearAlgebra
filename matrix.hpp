@@ -13,14 +13,15 @@ public:
 // CONSTRUCTOR METHODS
 
     // Construction of a matrix of size rowxcol with a single value
-    Matrix (size_t,size_t, double);  
+    Matrix (int,int, double);  
 
-    // Construct a matrix filled with random value
-    Matrix (size_t,size_t,int,int, std::string); 
+    // Construct a matrix filled with random value between range 
+    Matrix (int,int,int,int, std::string); 
 
 
 // COPY CONSTRUCTOR 
-
+    
+   Matrix & operator =  (const Matrix &); 
 
 // DESTRUCTOR
 
@@ -33,25 +34,35 @@ public:
 //ACCESS
 
     // Access element
-    double & operator () (size_t , size_t); 
+    double & operator () (int , int); 
+
+    // Access element
+    double  operator ()  (int , int) const ; 
+
 
     // Get row 
-    std::vector<double> get_row (size_t); 
+    std::vector<double> get_row (int); 
 
     // Get col
-    std::vector<double> get_col (size_t); 
+    std::vector<double> get_col (int); 
 
     // Get col size
-    size_t col_size()   {return col;}
+    int col_size() const   {return col;}
 
     // Get row size
-    size_t row_size()   {return row;}
+    int row_size() const  {return row;}
 
     // Get matrix size
-    size_t size()       {return row*col;}
+    int size() const    {return row*col;}
+
+    // Access data
+    std::vector<double> & get_data () {return this->data;}
+    
+    // Access data const
+    std::vector<double> get_data () const {return this->data;}
 
     // Get sub-matrix
-    Matrix  operator () (size_t, size_t, size_t, size_t); 
+    const  Matrix  operator () (int, int, int, int) const; 
 
 
 /*
@@ -77,7 +88,7 @@ public:
     // Insert sub-matrix. 
     // Matrix B to be inserted in matrix A
     // Position where to insert in A given as (start row, end row, start col, end col) 
-    void assign(Matrix, size_t, size_t, size_t, size_t);  
+    void assign(Matrix, int, int, int, int);  
 
     // Append a row at the end of the matrix
     void append_row(std::vector<double>); 
@@ -88,8 +99,7 @@ public:
     // Row Operation (multiply and sum a scalar)
     Matrix Row (int, double, double); 
 
-    // Col Operation (multiply and sum a scalar)  // sostituiscilo con un metodo ColModify
-
+    // Col Operation (multiply and sum a scalar) 
     Matrix Col (int, double,double); 
 
  
@@ -97,10 +107,10 @@ public:
 // MATRIX OPERATION
 
     // Matrix Sum // Valuatre se inserirli nella liberari LinALg
-    Matrix operator + (Matrix);  
+    Matrix operator + (const Matrix & );  
     
     // Matrix Subtraction // valutare se inserirli nella libreria Lin alg
-    Matrix operator - (Matrix); 
+    Matrix operator - (const Matrix & ); 
 
 
     // Matrix Change Sign
@@ -117,10 +127,10 @@ std::vector<double>::iterator & ColIteratorEnd(int);
 private:
 
     //Row number // Valutare se chiamare mRow (come da buona norma)
-    size_t row;  
+    int row;  
 
     //Column number // valitare se chiamare mCol
-    size_t col; 
+    int col; 
 
     //Matrix        // mData
     std::vector<double> data;

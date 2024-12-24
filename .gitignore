@@ -3,10 +3,17 @@
 #
 #
 *.com
-
+#
 # .gch files
 #
 #
 #
 *.gch
-
+#
+#
+# .swp files
+*.swp
+#
+# .out files
+*.out
+#
