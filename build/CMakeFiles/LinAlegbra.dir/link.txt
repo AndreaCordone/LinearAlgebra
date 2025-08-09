@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/LinAlegbra.dir/main.cpp.o CMakeFiles/LinAlegbra.dir/Matrix.cpp.o CMakeFiles/LinAlegbra.dir/MatrixArithmetic.cpp.o CMakeFiles/LinAlegbra.dir/MatrixFactorization.cpp.o CMakeFiles/LinAlegbra.dir/SpecialMatrix.cpp.o CMakeFiles/LinAlegbra.dir/MatrixOperation.cpp.o  -o LinAlegbra 

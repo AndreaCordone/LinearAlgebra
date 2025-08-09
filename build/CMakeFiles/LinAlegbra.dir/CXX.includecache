@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/andrea/Desktop/C++/Matrix/Matrix.hpp
+iostream
+-
+vector
+-
+
+/home/andrea/Desktop/C++/Matrix/MatrixArithmetic.hpp
+Matrix.hpp
+/home/andrea/Desktop/C++/Matrix/Matrix.hpp
+
+/home/andrea/Desktop/C++/Matrix/MatrixFactorization.hpp
+Matrix.hpp
+/home/andrea/Desktop/C++/Matrix/Matrix.hpp
+
+/home/andrea/Desktop/C++/Matrix/MatrixOperation.hpp
+Matrix.hpp
+/home/andrea/Desktop/C++/Matrix/Matrix.hpp
+
+/home/andrea/Desktop/C++/Matrix/SpecialMatrix.hpp
+Matrix.hpp
+/home/andrea/Desktop/C++/Matrix/Matrix.hpp
+
+/home/andrea/Desktop/C++/Matrix/main.cpp
+Matrix.hpp
+/home/andrea/Desktop/C++/Matrix/Matrix.hpp
+MatrixArithmetic.hpp
+/home/andrea/Desktop/C++/Matrix/MatrixArithmetic.hpp
+MatrixFactorization.hpp
+/home/andrea/Desktop/C++/Matrix/MatrixFactorization.hpp
+MatrixOperation.hpp
+/home/andrea/Desktop/C++/Matrix/MatrixOperation.hpp
+SpecialMatrix.hpp
+/home/andrea/Desktop/C++/Matrix/SpecialMatrix.hpp
+

@@ -1,0 +1,3 @@
+/home/andrea/Desktop/C++/Matrix/build/CMakeFiles/rebuild_cache.dir
+/home/andrea/Desktop/C++/Matrix/build/CMakeFiles/edit_cache.dir
+/home/andrea/Desktop/C++/Matrix/build/CMakeFiles/LinAlgebra.dir
