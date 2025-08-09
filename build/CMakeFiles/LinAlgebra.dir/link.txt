@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/LinAlgebra.dir/main.cpp.o CMakeFiles/LinAlgebra.dir/Matrix.cpp.o CMakeFiles/LinAlgebra.dir/MatrixArithmetic.cpp.o CMakeFiles/LinAlgebra.dir/SpecialMatrix.cpp.o CMakeFiles/LinAlgebra.dir/MatrixOperation.cpp.o CMakeFiles/LinAlgebra.dir/LUPQ.cpp.o CMakeFiles/LinAlgebra.dir/LUP.cpp.o CMakeFiles/LinAlgebra.dir/CH.cpp.o  -o LinAlgebra 
